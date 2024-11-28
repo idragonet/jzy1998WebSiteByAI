@@ -1,13 +1,6 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const products = [
   {
@@ -62,31 +55,23 @@ export default function ProductShowcase() {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">产品系列</h2>
-        <Carousel className="w-full max-w-6xl mx-auto">
-          <CarouselContent>
-            {products.map((product, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <Card>
-                  <CardContent className="p-0">
-                    <div className="relative aspect-square">
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="object-cover w-full h-full rounded-t-lg"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
-                      <p className="text-muted-foreground">{product.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product, index) => (
+            <Card key={index} className="overflow-hidden">
+              <div className="aspect-video relative">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
+                <p className="text-muted-foreground">{product.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
