@@ -7,17 +7,17 @@
     "order": 0
   },
   {
-    "id": "1",
-    "image": "https://images.unsplash.com/photo-1585245542456-a772781e40b4?w=800&auto=format&fit=crop&q=60",
-    "title": "35极窄系列",
-    "description": "超薄框设计，让您享受更开阔的视野",
-    "order": 1
-  },
-  {
     "id": "3",
     "image": "https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=800&auto=format&fit=crop&q=60",
     "title": "33/40×50中窄推拉门系列",
     "description": "经典推拉设计，适合各种空间需求",
+    "order": 1
+  },
+  {
+    "id": "1",
+    "image": "https://images.unsplash.com/photo-1585245542456-a772781e40b4?w=800&auto=format&fit=crop&q=60",
+    "title": "35极窄系列",
+    "description": "超薄框设计，让您享受更开阔的视野",
     "order": 2
   },
   {

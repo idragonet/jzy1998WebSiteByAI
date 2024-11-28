@@ -1,0 +1,13 @@
+{
+  "phones": {
+    "main": "07575555",
+    "sales1": "1111",
+    "sales2": "111",
+    "sales1Name": "张先生",
+    "sales2Name": "李小姐"
+  },
+  "operationCenter": "中国佛山",
+  "factoryAddress": "点点滴滴",
+  "wechat": "",
+  "wechatQRCode": "/contact-images/wechat-qrcode-1732780290072.jpg"
+}

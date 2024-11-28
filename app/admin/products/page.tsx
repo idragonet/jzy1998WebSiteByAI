@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, LogOut } from "lucide-react";
 import {
   DndContext,
   closestCenter,
@@ -220,9 +220,34 @@ export default function AdminProducts() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/admin/logout", {
+        method: "POST",
+      });
+      router.push("/admin/login");
+    } catch (error) {
+      toast({
+        title: "错误",
+        description: "退出失败",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">产品类型管理</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">产品类型管理</h1>
+        <Button 
+          variant="outline" 
+          onClick={handleLogout}
+          className="flex items-center gap-2"
+        >
+          <LogOut className="h-4 w-4" />
+          退出登录
+        </Button>
+      </div>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
