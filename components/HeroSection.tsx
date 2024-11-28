@@ -3,7 +3,7 @@
 import { calculateExperienceYears } from "@/lib/utils";
 
 export default function HeroSection() {
-  const experienceYears = calculateExperienceYears();
+  const experienceYears = calculateExperienceYears(2013);
 
   return (
     <div className="relative min-h-[80vh] flex items-center">
@@ -25,7 +25,7 @@ export default function HeroSection() {
             优质门窗定制专家
           </p>
           <p className="text-xl">
-            {experienceYears}年专业制造经验，为您打造高品质、节能环保的门窗解决方案
+            {experienceYears}年专业制造经验，为您打造高品质的门窗解决方案
           </p>
         </div>
       </div>
