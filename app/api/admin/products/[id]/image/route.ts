@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { writeFile, mkdir } from "fs/promises";
+import { writeFile, mkdir, readFile } from "fs/promises";
 import path from "path";
 
 export async function POST(
@@ -33,7 +33,8 @@ export async function POST(
 
     // 更新产品信息中的图片URL
     const productsPath = path.join(process.cwd(), "data", "products.json");
-    const productsData = require(productsPath);
+    const productsContent = await readFile(productsPath, "utf-8");
+    const productsData = JSON.parse(productsContent);
     const products = productsData.map((product: any) => {
       if (product.id === params.id) {
         return {

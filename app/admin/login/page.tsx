@@ -8,15 +8,15 @@ import { useToast } from "@/components/ui/use-toast";
 
 export default function AdminLogin() {
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
     try {
-      console.log("Attempting login with password:", password);
-      
       const response = await fetch("/api/admin/login", {
         method: "POST",
         headers: {
@@ -26,9 +26,9 @@ export default function AdminLogin() {
       });
 
       const data = await response.json();
-      console.log("Login response:", data);
 
       if (response.ok) {
+        setPassword("");
         router.push("/admin/products");
       } else {
         toast({
@@ -36,6 +36,7 @@ export default function AdminLogin() {
           description: data.error || "密码错误",
           variant: "destructive",
         });
+        setPassword("");
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -44,6 +45,9 @@ export default function AdminLogin() {
         description: "登录过程中发生错误",
         variant: "destructive",
       });
+      setPassword("");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -58,10 +62,16 @@ export default function AdminLogin() {
               placeholder="请输入管理密码"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={isLoading}
+              autoFocus
             />
           </div>
-          <Button type="submit" className="w-full">
-            登录
+          <Button 
+            type="submit" 
+            className="w-full"
+            disabled={isLoading}
+          >
+            {isLoading ? "登录中..." : "登录"}
           </Button>
         </form>
       </div>

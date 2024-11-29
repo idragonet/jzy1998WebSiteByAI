@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import fs from "fs/promises";
 import path from "path";
+import { readFile } from "fs/promises";
 
-const ADMIN_PASSWORD = "lz2000";
+const PASSWORD_FILE = path.join(process.cwd(), "data", "password.json");
+const DEFAULT_PASSWORD = "lz2000";
 const PRODUCTS_FILE = path.join(process.cwd(), "data", "products.json");
 const CONTACT_FILE = path.join(process.cwd(), "data", "contact.json");
 
@@ -57,9 +59,18 @@ async function initializeData() {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const { password } = await request.json();
 
-    if (body.password === ADMIN_PASSWORD) {
+    // 读取存储的密码
+    let correctPassword;
+    try {
+      const data = await readFile(PASSWORD_FILE, "utf-8");
+      correctPassword = JSON.parse(data).password;
+    } catch {
+      correctPassword = DEFAULT_PASSWORD;
+    }
+
+    if (password === correctPassword) {
       cookies().set("admin_session", "true", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",

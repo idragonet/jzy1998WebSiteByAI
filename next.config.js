@@ -5,7 +5,7 @@ const nextConfig = {
   },
   images: { 
     unoptimized: true,
-    domains: ['api.qrserver.com'],
+    domains: ['api.qrserver.com', 'images.unsplash.com'],
     remotePatterns: [
       {
         protocol: 'https',
